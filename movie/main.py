@@ -257,7 +257,8 @@ def validate(val_loader, model, criterion, logger=None):
         #end = time.time()
         #label_path = '../results/labels.npy'
         #label_path = 'data/ceshi.npy'
-        label_path = 'data/val.npy'
+        #label_path = 'data/val.npy'
+        label_path = '/home/jzwang/code/RGB-FLOW/MovieNet/data/val.npy'
         labels = np.load(label_path)
         mAP, wAP = compute_map(labels, output_mtx)
 

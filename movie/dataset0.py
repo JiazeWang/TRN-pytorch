@@ -6,24 +6,36 @@ import os.path
 import numpy as np
 from numpy.random import randint
 import torch
+
+import random
+
+
 class VideoRecord(object):
     def __init__(self, row):
-        self._data = row
+        #self._data = row
+        row = row.strip()
+        row = row.split(' ')
+        self.root = row[0]
+        self.shot = row[1].split(',')
+        self.frames = row[2].split(',')
+        #print(row[3])
+        self.labelnew = row[3]
+        self.select = random.randint(0,len(self.frames)-1)
 
     @property
     def path(self):
-        return self._data[0]
+        return self.root+self.shot[self.select]
 
     @property
     def num_frames(self):
-        return int(self._data[1])
+        return int(self.frames[self.select])
 
     @property
     def label(self):
-        return self._data[2]
+        return self.labelnew
 
 
-class TSNDataSet(data.Dataset):
+class TSNDataSetMovie(data.Dataset):
     def __init__(self, root_path, list_file,
                  num_segments=3, new_length=1, modality='RGB',
                  image_tmpl='img_{:05d}.jpg', transform=None,
@@ -53,7 +65,7 @@ class TSNDataSet(data.Dataset):
             return [x_img, y_img]
 
     def _parse_list(self):
-        self.video_list = [VideoRecord(x.strip().split(' ')) for x in open(self.list_file)]
+        self.video_list = [VideoRecord(x) for x in open(self.list_file)]
 
     def _sample_indices(self, record):
         """

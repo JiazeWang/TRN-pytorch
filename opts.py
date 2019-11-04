@@ -19,13 +19,13 @@ parser.add_argument('--loss_type', type=str, default="nll",
 parser.add_argument('--img_feature_dim', default=256, type=int, help="the feature dimension for each frame")
 
 # ========================= Learning Configs ==========================
-parser.add_argument('--epochs', default=120, type=int, metavar='N',
+parser.add_argument('--epochs', default=300, type=int, metavar='N',
                     help='number of total epochs to run')
 parser.add_argument('-b', '--batch-size', default=128, type=int,
                     metavar='N', help='mini-batch size (default: 256)')
 parser.add_argument('--lr', '--learning-rate', default=0.001, type=float,
                     metavar='LR', help='initial learning rate')
-parser.add_argument('--lr_steps', default=[50, 100], type=float, nargs="+",
+parser.add_argument('--lr_steps', default=[200, 250], type=float, nargs="+",
                     metavar='LRSteps', help='epochs to decay learning rate by 10')
 parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                     help='momentum')
@@ -57,6 +57,3 @@ parser.add_argument('--flow_prefix', default="", type=str)
 parser.add_argument('--root_log',type=str, default='log')
 parser.add_argument('--root_model', type=str, default='model')
 parser.add_argument('--root_output',type=str, default='output')
-
-
-

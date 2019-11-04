@@ -140,6 +140,7 @@ def main():
             print ('Train loss: {0:.4f} val loss: {1:.4f} mAP: {2:.4f} wAP: {3:.4f}'.format(
     		   			trainloss, valloss, mAP, wAP))
             # evaluate on validation set
+            is_best = mAP > best_map
             if mAP > best_map:
                 best_map = mAP
     			# checkpoint_name = "%04d_%s" % (epoch+1, "checkpoint.pth.tar")
@@ -148,8 +149,9 @@ def main():
     			    'epoch': epoch+1,
     			    'state_dict': model.state_dict(),
     			    'optimizer': optimizer.state_dict(),
-    			    }, checkpoint_name, args.resume_path)
-                np.save(args.result_path, output_mtx)
+    			    }, is_best, epoch)
+                npy_name = str(epoch)+args.result_path
+                np.save(npy_name, output_mtx)
             with open(args.record_path, 'a') as file:
                 file.write('Epoch:[{0}]'
     		   		   'Train loss: {1:.4f} val loss: {2:.4f} map: {3:.4f}\n'.format(
@@ -265,8 +267,9 @@ def validate(val_loader, model, criterion, logger=None):
     return losses / (i+1), mAP, wAP, output_mtx
 
 
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
-    filename = '_'.join((args.snapshot_pref, args.modality.lower(), filename))
+def save_checkpoint(state, is_best, epoch):
+    file_name='checkpoint.pth.tar'
+    filename = '_'.join((str(epoch), args.snapshot_pref, args.modality.lower(), file_name))
     torch.save(state, filename)
     if is_best:
         best_name = '_'.join((args.snapshot_pref, args.modality.lower(), 'model_best.pth.tar'))

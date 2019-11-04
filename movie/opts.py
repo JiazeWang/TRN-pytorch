@@ -57,7 +57,7 @@ parser.add_argument('--flow_prefix', default="", type=str)
 parser.add_argument('--root_log',type=str, default='log')
 parser.add_argument('--root_model', type=str, default='model')
 parser.add_argument('--root_output',type=str, default='output')
-parser.add_argument('--resume_path', type = str, default = 'checkpoints_' + 'record_1' + '/',
+parser.add_argument('--resume_path', type = str, default = 'checkpoints_' + 'record_1' + '.pth',
 					 help = 'path to latest checkpoint')
 parser.add_argument('--record_path', type = str, default = 'record' + '_' + 'record_1' + '.txt',
 					 help = 'path to latest training records')

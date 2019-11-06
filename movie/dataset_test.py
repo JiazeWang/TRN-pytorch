@@ -115,19 +115,23 @@ class TSNDataSetMovie(data.Dataset):
         data0, label0 = self.get_item_once(index,self.video_list0)
         data1, label0 = self.get_item_once(index,self.video_list1)
         data2, label0 = self.get_item_once(index,self.video_list2)
+        """
         data3, label0 = self.get_item_once(index,self.video_list3)
         data4, label0 = self.get_item_once(index,self.video_list4)
         data5, label0 = self.get_item_once(index,self.video_list5)
         data6, label0 = self.get_item_once(index,self.video_list6)
         data7, label0 = self.get_item_once(index,self.video_list7)
+        """
         data.extend(data0)
         data.extend(data1)
         data.extend(data2)
+        """
         data.extend(data3)
         data.extend(data4)
         data.extend(data5)
         data.extend(data6)
         data.extend(data7)
+        """
         process_data = self.transform(data)
         return process_data, label0
 

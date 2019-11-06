@@ -20,7 +20,9 @@ class TSN(nn.Module):
         self.dropout = dropout
         self.crop_num = crop_num
         self.consensus_type = consensus_type
+        self.consensus_type2 = 'avg'
         self.img_feature_dim = img_feature_dim  # the dimension of the CNN feature to represent each frame
+        self.selected = 8
         if not before_softmax and consensus_type != 'avg':
             raise ValueError("Only avg consensus can be used after Softmax")
 
@@ -57,7 +59,7 @@ class TSN(nn.Module):
             self.consensus = TRNmodule.return_TRN(consensus_type, self.img_feature_dim, self.num_segments, num_class)
         else:
             self.consensus = ConsensusModule(consensus_type)
-
+        self.consensus2 = ConsensusModule('avg')
         if not self.before_softmax:
             self.softmax = nn.Softmax()
 
@@ -227,8 +229,11 @@ class TSN(nn.Module):
         if self.reshape:
             base_out = base_out.view((-1, self.num_segments) + base_out.size()[1:])
 
-        output = self.consensus(base_out)
+        output = self.consensus(base_out).squeeze(1)
+        output = output.view((-1, self.selected) + output.size()[1:])
+        output = self.consensus2(output)
         return output.squeeze(1)
+
 
     def _get_diff(self, input, keep_rgb=False):
         input_c = 3 if self.modality in ["RGB", "RGBDiff"] else 2

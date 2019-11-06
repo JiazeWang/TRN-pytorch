@@ -10,8 +10,8 @@ import torch.backends.cudnn as cudnn
 import torch.optim
 from torch.nn.utils import clip_grad_norm
 import datetime
-from dataset import TSNDataSet
-from dataset0 import TSNDataSetMovie
+#from dataset import TSNDataSet
+from dataset_test import TSNDataSetMovie
 from models import TSN
 from transforms import *
 from opts import parser
@@ -88,7 +88,7 @@ def main():
         num_workers=args.workers, pin_memory=True)
 
     val_loader = torch.utils.data.DataLoader(
-        TSNDataSet("", args.val_list, num_segments=args.num_segments,
+        TSNDataSetMovie("", args.val_list, num_segments=args.num_segments,
                    new_length=data_length,
                    modality=args.modality,
                    image_tmpl="frame_{:04d}.jpg" if args.modality in ["RGB", "RGBDiff"] else args.flow_prefix+"{}_{:05d}.jpg",

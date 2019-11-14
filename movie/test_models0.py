@@ -44,7 +44,7 @@ args = parser.parse_args()
 
 #categories, args.train_list, args.val_list, args.root_path, prefix = datasets_video.return_dataset(args.dataset, args.modality)
 num_class = 21
-
+args.root_path =''
 net = TSN(num_class, args.test_segments if args.crop_fusion_type in ['TRN','TRNmultiscale'] else 1, args.modality,
           base_model=args.arch,
           consensus_type=args.crop_fusion_type,

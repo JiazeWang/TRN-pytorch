@@ -40,7 +40,7 @@ args = parser.parse_args()
 
 
 
-categories, args.train_list, args.val_list, args.root_path, prefix = datasets_video.return_dataset(args.dataset, args.modality)
+#categories, args.train_list, args.val_list, args.root_path, prefix = datasets_video.return_dataset(args.dataset, args.modality)
 num_class = len(categories)
 
 net = TSN(num_class, args.test_segments if args.crop_fusion_type in ['TRN','TRNmultiscale'] else 1, args.modality,
@@ -71,7 +71,7 @@ data_loader = torch.utils.data.DataLoader(
         TSNDataSet(args.root_path, args.val_list, num_segments=args.test_segments,
                    new_length=1 if args.modality == "RGB" else 5,
                    modality=args.modality,
-                   image_tmpl=prefix,
+                   image_tmpl="frame_{:04d}.jpg",
                    test_mode=True,
                    transform=torchvision.transforms.Compose([
                        cropping,

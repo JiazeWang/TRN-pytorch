@@ -5,7 +5,8 @@ import numpy as np
 import torch.nn.parallel
 import torch.optim
 from sklearn.metrics import confusion_matrix
-from dataset import TSNDataSet
+#from dataset import TSNDataSet
+from dataset_test import TSNDataSetMovie
 from models import TSN
 from transforms import *
 from ops import ConsensusModule

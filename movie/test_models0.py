@@ -51,7 +51,7 @@ net = TSN(num_class, args.test_segments if args.crop_fusion_type in ['TRN','TRNm
           )
 
 checkpoint = torch.load(args.weights)
-print("model epoch {} best prec@1: {}".format(checkpoint['epoch'], checkpoint['best_prec1']))
+#print("model epoch {} best prec@1: {}".format(checkpoint['epoch'], checkpoint['best_prec1']))
 
 base_dict = {'.'.join(k.split('.')[1:]): v for k,v in list(checkpoint['state_dict'].items())}
 net.load_state_dict(base_dict)

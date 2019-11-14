@@ -70,7 +70,7 @@ else:
     raise ValueError("Only 1 and 10 crops are supported while we got {}".format(args.test_crops))
 
 data_loader = torch.utils.data.DataLoader(
-        TSNDataSet(args.root_path, args.val_list, num_segments=args.test_segments,
+        TSNDataSetMovie(args.root_path, args.val_list, num_segments=args.test_segments,
                    new_length=1 if args.modality == "RGB" else 5,
                    modality=args.modality,
                    image_tmpl="frame_{:04d}.jpg",

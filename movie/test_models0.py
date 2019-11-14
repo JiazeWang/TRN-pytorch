@@ -34,6 +34,7 @@ parser.add_argument('--gpus', nargs='+', type=int, default=None)
 parser.add_argument('--img_feature_dim',type=int, default=256)
 parser.add_argument('--num_set_segments',type=int, default=1,help='TODO: select multiply set of n-frames from a video')
 parser.add_argument('--softmax', type=int, default=0)
+parser.add_argument('--val_list', type = str, default = '/home/jzwang/code/Video_3D/movienet/data/movie/movie_test.txt')
 
 args = parser.parse_args()
 

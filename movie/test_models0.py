@@ -13,6 +13,7 @@ from ops import ConsensusModule
 import datasets_video
 import pdb
 from torch.nn import functional as F
+from sklearn.metrics import average_precision_score
 
 def get_map(output, target):
     n_sample, n_label = output.shape

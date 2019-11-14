@@ -41,7 +41,7 @@ parser.add_argument('--gpus', nargs='+', type=int, default=None)
 parser.add_argument('--img_feature_dim',type=int, default=256)
 parser.add_argument('--num_set_segments',type=int, default=1,help='TODO: select multiply set of n-frames from a video')
 parser.add_argument('--softmax', type=int, default=0)
-parser.add_argument('--val_list', type = str, default = '/home/jzwang/code/Video_3D/movienet/data/movie/movie_test.txt')
+parser.add_argument('--val_list', type = str, default = '/home/jzwang/code/Video_3D/movienet/data/movie/movie_val.txt')
 
 args = parser.parse_args()
 
@@ -166,7 +166,7 @@ def validate(val_loader, model, logger=None):
         else:
             output_mtx = np.concatenate((output_mtx, output.data.cpu().numpy()), axis=0)
 
-        label_path = '/home/jzwang/code/Video_3D/movienet/data/movie/movie_test.npy'
+        label_path = '/home/jzwang/code/Video_3D/movienet/data/movie/movie_val.npy'
         #label_path = '/home/jzwang/code/RGB-FLOW/MovieNet/data/new/ceshi_val.npy'
         if i == (len(val_loader)-1):
             np.save("output_mtx.npy", output_mtx)

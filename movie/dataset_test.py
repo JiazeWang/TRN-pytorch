@@ -19,7 +19,7 @@ class VideoRecord(object):
         self.shot = row[1].split(',')
         self.frames = row[2].split(',')
         self.labelnew = row[3]
-        self.num_selects = 3
+        self.num_selects = 8
         self.num_shots = len(self.shot)
         tick = ((self.num_shots)-1) / float(self.num_selects)
         self.offsets = int(random.randint(0,int(tick/2)) + tick * number)
@@ -72,13 +72,13 @@ class TSNDataSetMovie(data.Dataset):
         self.video_list0 = [VideoRecord(x, 0) for x in open(self.list_file)]
         self.video_list1 = [VideoRecord(x, 1) for x in open(self.list_file)]
         self.video_list2 = [VideoRecord(x, 2) for x in open(self.list_file)]
-        """
+
         self.video_list3 = [VideoRecord(x, 3) for x in open(self.list_file)]
         self.video_list4 = [VideoRecord(x, 4) for x in open(self.list_file)]
         self.video_list5 = [VideoRecord(x, 5) for x in open(self.list_file)]
         self.video_list6 = [VideoRecord(x, 6) for x in open(self.list_file)]
         self.video_list7 = [VideoRecord(x, 7) for x in open(self.list_file)]
-        """
+
     def _sample_indices(self, record):
         """
         :param record: VideoRecord
@@ -115,23 +115,23 @@ class TSNDataSetMovie(data.Dataset):
         data0, label0 = self.get_item_once(index,self.video_list0)
         data1, label0 = self.get_item_once(index,self.video_list1)
         data2, label0 = self.get_item_once(index,self.video_list2)
-        """
+
         data3, label0 = self.get_item_once(index,self.video_list3)
         data4, label0 = self.get_item_once(index,self.video_list4)
         data5, label0 = self.get_item_once(index,self.video_list5)
         data6, label0 = self.get_item_once(index,self.video_list6)
         data7, label0 = self.get_item_once(index,self.video_list7)
-        """
+
         data.extend(data0)
         data.extend(data1)
         data.extend(data2)
-        """
+
         data.extend(data3)
         data.extend(data4)
         data.extend(data5)
         data.extend(data6)
         data.extend(data7)
-        """
+
         process_data = self.transform(data)
         return process_data, label0
 

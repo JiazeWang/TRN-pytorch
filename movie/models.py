@@ -22,7 +22,7 @@ class TSN(nn.Module):
         self.consensus_type = consensus_type
         self.consensus_type2 = 'avg'
         self.img_feature_dim = img_feature_dim  # the dimension of the CNN feature to represent each frame
-        self.selected = 3
+        self.selected = 8
         if not before_softmax and consensus_type != 'avg':
             raise ValueError("Only avg consensus can be used after Softmax")
 

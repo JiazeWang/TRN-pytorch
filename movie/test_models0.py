@@ -27,7 +27,7 @@ parser.add_argument('--test_segments', type=int, default=8)
 parser.add_argument('--max_num', type=int, default=-1)
 parser.add_argument('--test_crops', type=int, default=1)
 parser.add_argument('--input_size', type=int, default=224)
-parser.add_argument('--crop_fusion_type', type=str, default='TRN',
+parser.add_argument('--crop_fusion_type', type=str, default='TRNmultiscale',
                     choices=['avg', 'TRN','TRNmultiscale'])
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')

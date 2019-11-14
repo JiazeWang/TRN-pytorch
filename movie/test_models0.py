@@ -17,7 +17,7 @@ from torch.nn import functional as F
 # options
 parser = argparse.ArgumentParser(
     description="TRN testing on the full validation set")
-parser.add_argument('dataset', type=str, choices=['something','jester','moments','charades'])
+parser.add_argument('dataset', type=str, choices=['something','jester','moments','charades','movie'])
 parser.add_argument('modality', type=str, choices=['RGB', 'Flow', 'RGBDiff'])
 parser.add_argument('weights', type=str)
 parser.add_argument('--arch', type=str, default="resnet101")
@@ -41,7 +41,7 @@ args = parser.parse_args()
 
 
 #categories, args.train_list, args.val_list, args.root_path, prefix = datasets_video.return_dataset(args.dataset, args.modality)
-num_class = len(categories)
+num_class = 21
 
 net = TSN(num_class, args.test_segments if args.crop_fusion_type in ['TRN','TRNmultiscale'] else 1, args.modality,
           base_model=args.arch,
